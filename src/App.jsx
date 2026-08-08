@@ -1,10 +1,9 @@
 import './App.css'
-
+import DashboardPage from './pages/DashboardPage'
+import './assets/styles/global.css';
 function App(){
     return (
-        <div>
-            <h1>bonjour</h1>
-        </div>
+       <DashboardPage/> 
     )
 }
 
