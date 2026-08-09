@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// import "../styles/global.css";
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
 import { useState } from "react";
 import { Search } from "lucide-react";
 
