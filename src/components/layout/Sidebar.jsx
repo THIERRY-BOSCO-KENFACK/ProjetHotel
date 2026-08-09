@@ -1,5 +1,9 @@
 import { useState } from "react";
+<<<<<<< HEAD
+// Importation des icônes depuis la bibliothèque lucide-react
+=======
 // ici , on importe les icônes depuis la librairie lucide-react.
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
 import {
   LayoutDashboard,
   CalendarDays,
@@ -15,7 +19,10 @@ import {
 // Liste des éléments de navigation.
 // Centraliser la config ici facilite l'ajout/suppression d'une entrée
 // et évite de dupliquer du JSX pour chaque lien.
+<<<<<<< HEAD
+=======
 //ici on cree un tableau d'objets pour chaque élément de navigation, avec un id unique, un label et une icône associée. 
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
 const NAV_ITEMS = [
   { id: "dashboard", label: "Tableau de bord", icon: LayoutDashboard },
   { id: "planning", label: "Planning", icon: CalendarDays },
@@ -29,17 +36,25 @@ const NAV_ITEMS = [
 function Sidebar() {
   // Élément actif par défaut : le tableau de bord.
   // Sera remplacé par la logique de routage (useLocation) plus tard.
+<<<<<<< HEAD
+=======
   // ici on utilise le hook useState pour gérer l'état de l'élément actif dans la barre latérale.
   //L'élément actif est initialisé à "dashboard", ce qui signifie que le tableau de bord sera sélectionné par défaut.
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
   const [activeItem, setActiveItem] = useState("dashboard");
 
   return (
     <aside className="sidebar">
       {/* Logo du PMS */}
       <div className="sidebar__logo">
+<<<<<<< HEAD
+        <Hotel size={24} className="sidebar__logo-icon" />
+        <span className="sidebar__logo-text">Geneva PMS</span>
+=======
         {/* le size={24} permet de définir la taille de l'icône */}
         <Hotel size={24} className="sidebar__logo-icon" />
         <span className="sidebar__logo-text">GENEVA PMS</span>
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
       </div>
 
       {/* Navigation principale */}
@@ -49,7 +64,10 @@ function Sidebar() {
             <li key={id}>
               <button
                 type="button"
+<<<<<<< HEAD
+=======
                 // sidebar__nav-item est la classe de base pour chaque élément de navigation.
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
                 className={`sidebar__nav-item ${
                   activeItem === id ? "sidebar__nav-item--active" : ""
                 }`}

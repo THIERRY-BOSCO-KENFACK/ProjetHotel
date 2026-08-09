@@ -13,9 +13,13 @@ function Header({ pageTitle = "Tableau de bord", user = { name: "Marie", role: "
     .map((part) => part[0])
     .join("")
     .toUpperCase();
+<<<<<<< HEAD
+
+=======
 //dans const ci haut, on utilise la méthode split pour diviser le nom 
 // de l'utilisateur en parties (en utilisant l'espace comme séparateur), puis on mappe
 //chaque partie pour obtenir la première lettre, et enfin on joint ces lettres pour former les initiales. La méthode toUpperCase est utilisée pour s'assurer que les initiales sont en majuscules. 
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
   return (
     <header className="header">
       {/* Titre de la page courante */}
@@ -24,7 +28,10 @@ function Header({ pageTitle = "Tableau de bord", user = { name: "Marie", role: "
       <div className="header__actions">
         {/* Icône de notifications avec badge */}
         <button type="button" className="header__notifications" aria-label="Notifications">
+<<<<<<< HEAD
+=======
             {/* Bell est l'icône de notifications */}
+>>>>>>> 392a428f111714e23f7303e2cbe097c900517c35
           <Bell size={20} />
           {unreadNotifications > 0 && (
             <span className="header__notifications-badge">{unreadNotifications}</span>
