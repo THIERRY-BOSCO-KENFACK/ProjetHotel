@@ -48,9 +48,7 @@ function Sidebar() {
         <span className="sidebar__logo-text">Geneva PMS</span>
 
         {/* le size={24} permet de définir la taille de l'icône */}
-        <Hotel size={24} className="sidebar__logo-icon" />
-        <span className="sidebar__logo-text">GENEVA PMS</span>
-
+      
       </div>
 
       {/* Navigation principale */}
