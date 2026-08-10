@@ -1,7 +1,4 @@
-import { useState } from "react";
-// Importation des icônes depuis la bibliothèque lucide-react
-// ici , on importe les icônes depuis la librairie lucide-react.
-
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   CalendarDays,
@@ -14,70 +11,47 @@ import {
   Hotel,
 } from "lucide-react";
 
-// Liste des éléments de navigation.
-// Centraliser la config ici facilite l'ajout/suppression d'une entrée
-// et évite de dupliquer du JSX pour chaque lien.
-
-//ici on cree un tableau d'objets pour chaque élément de navigation, avec un id unique, un label et une icône associée. 
-
+// Chaque item a maintenant un `path`, utilisé par NavLink pour la navigation.
 const NAV_ITEMS = [
-  { id: "dashboard", label: "Tableau de bord", icon: LayoutDashboard },
-  { id: "planning", label: "Planning", icon: CalendarDays },
-  { id: "reservations", label: "Réservations", icon: BookOpen },
-  { id: "clients", label: "Clients", icon: Users },
-  { id: "entretien", label: "Entretien", icon: Sparkles },
-  { id: "comptabilite", label: "Comptabilité", icon: Calculator },
-  { id: "parametres", label: "Paramètres", icon: Settings },
+  { id: "dashboard", label: "Tableau de bord", icon: LayoutDashboard, path: "/" },
+  { id: "planning", label: "Planning", icon: CalendarDays, path: "/planning" },
+  { id: "reservations", label: "Réservations", icon: BookOpen, path: "/reservations" },
+  { id: "clients", label: "Clients", icon: Users, path: "/clients" },
+  { id: "entretien", label: "Entretien", icon: Sparkles, path: "/entretien" },
+  { id: "comptabilite", label: "Comptabilité", icon: Calculator, path: "/comptabilite" },
+  { id: "parametres", label: "Paramètres", icon: Settings, path: "/parametres" },
 ];
 
 function Sidebar() {
-  // Élément actif par défaut : le tableau de bord.
-  // Sera remplacé par la logique de routage (useLocation) plus tard.
-
-  // ici on utilise le hook useState pour gérer l'état de l'élément actif dans la barre latérale.
-  //L'élément actif est initialisé à "dashboard", ce qui signifie que le tableau de bord sera sélectionné par défaut.
-
-  const [activeItem, setActiveItem] = useState("dashboard");
-
   return (
     <aside className="sidebar">
-      {/* Logo du PMS */}
       <div className="sidebar__logo">
-
         <Hotel size={24} className="sidebar__logo-icon" />
-        <span className="sidebar__logo-text">Geneva PMS</span>
-
-        {/* le size={24} permet de définir la taille de l'icône */}
-      
+        <span className="sidebar__logo-text">Suite PMS</span>
       </div>
 
-      {/* Navigation principale */}
-      <nav className="sidebar__nav">
+      <nav>
         <ul className="sidebar__nav-list">
-          {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
+          {NAV_ITEMS.map(({ id, label, icon: Icon, path }) => (
             <li key={id}>
-              <button
-                type="button"
-
-                // sidebar__nav-item est la classe de base pour chaque élément de navigation.
-
-                className={`sidebar__nav-item ${
-                  activeItem === id ? "sidebar__nav-item--active" : ""
-                }`}
-                onClick={() => setActiveItem(id)}
+              <NavLink
+                to={path}
+                end={path === "/"}
+                className={({ isActive }) =>
+                  `sidebar__nav-item ${isActive ? "sidebar__nav-item--active" : ""}`
+                }
               >
-                <Icon size={20} className="sidebar__nav-icon" />
+                <Icon size={20} />
                 <span>{label}</span>
-              </button>
+              </NavLink>
             </li>
           ))}
         </ul>
       </nav>
 
-      {/* Déconnexion, séparée visuellement en bas de la sidebar */}
       <div className="sidebar__footer">
         <button type="button" className="sidebar__nav-item sidebar__logout">
-          <LogOut size={20} className="sidebar__nav-icon" />
+          <LogOut size={20} />
           <span>Déconnexion</span>
         </button>
       </div>

@@ -131,6 +131,7 @@ button {
 .sidebar__nav-item {
   display: flex;
   align-items: center;
+  text-decoration: none; /* NavLink rend un <a>, on retire le soulignement par défaut */
   gap: var(--space-sm);
   width: 100%;
   padding: var(--space-sm) var(--space-sm);
