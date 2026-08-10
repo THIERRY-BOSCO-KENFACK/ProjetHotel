@@ -66,7 +66,7 @@ function PlanningPreview() {
                     className="planning-table__cell"
                   >
                     <span
-                      className={`planning-bar planning-bar--${segment.type}`}
+                      className={`reservation-bar reservation-bar--${segment.type}`}
                     >
                       {segment.label}
                     </span>
