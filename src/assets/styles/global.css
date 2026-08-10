@@ -448,14 +448,19 @@ button {
   padding: var(--space-xs);
 }
 
-.planning-bar {
+/* .planning-bar {
   display: block;
   text-align: center;
   padding: var(--space-sm);
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
   font-weight: 500;
-}
+} */
+
+.planning-bar--reservation { background-color: var(--color-blue-100); color: var(--color-blue-700); }
+.planning-bar--cleaning { background-color: var(--color-amber-50); color: var(--color-amber-500); }
+.planning-bar--maintenance { background-color: var(--color-red-50); color: var(--color-red-500); }
+.planning-bar--free { background-color: transparent; color: var(--color-gray-300); border: 1px dashed var(--color-gray-200); }
 
 .planning-bar--reservation {
   background-color: var(--color-blue-100);
@@ -556,4 +561,189 @@ button {
   .metrics-cards {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===================================================================
+   RESERVATION BAR (partagé entre Dashboard et Planning)
+   =================================================================== */
+.reservation-bar {
+  display: block;
+  text-align: center;
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: opacity 0.15s ease;
+}
+
+.reservation-bar--reservation { background-color: var(--color-blue-100); color: var(--color-blue-700); }
+.reservation-bar--cleaning { background-color: var(--color-amber-50); color: var(--color-amber-500); }
+.reservation-bar--maintenance { background-color: var(--color-red-50); color: var(--color-red-500); }
+.reservation-bar--free { background-color: transparent; color: var(--color-gray-300); border: 1px dashed var(--color-gray-200); }
+
+/* Segment estompé quand son statut est désactivé via PlanningFilter */
+.reservation-bar--dimmed {
+  opacity: 0.25;
+}
+
+/* ===================================================================
+   PLANNING TOOLBAR
+   =================================================================== */
+.planning-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.planning-toolbar__navigation {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.planning-toolbar__nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-600);
+}
+
+.planning-toolbar__nav-btn:hover {
+  background-color: var(--color-gray-100);
+}
+
+.planning-toolbar__week-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+  min-width: 220px;
+  text-align: center;
+}
+
+.planning-toolbar__filter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.planning-toolbar__filter-icon {
+  color: var(--color-gray-400);
+}
+
+.planning-toolbar__filter-select {
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+}
+
+.planning-toolbar__filter-select:focus {
+  outline: none;
+}
+
+/* ===================================================================
+   PLANNING FILTER (légende + chips cliquables)
+   =================================================================== */
+.planning-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.planning-filter__chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-white);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-gray-400);
+  transition: 0.15s ease;
+}
+
+.planning-filter__chip--active {
+  color: var(--color-gray-800);
+  border-color: transparent;
+  background-color: var(--color-gray-100);
+}
+
+.planning-filter__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+.planning-filter__chip--reservation .planning-filter__dot { background-color: var(--color-blue-500); }
+.planning-filter__chip--cleaning .planning-filter__dot { background-color: var(--color-amber-500); }
+.planning-filter__chip--maintenance .planning-filter__dot { background-color: var(--color-red-500); }
+.planning-filter__chip--free .planning-filter__dot { background-color: var(--color-gray-300); }
+
+/* ===================================================================
+   ROOM ROW
+   =================================================================== */
+.room-row__number {
+  font-weight: 600;
+  color: var(--color-gray-800);
+  padding: var(--space-sm);
+  width: 80px;
+}
+
+.room-row__cell {
+  padding: var(--space-xs);
+}
+
+/* ===================================================================
+   PLANNING GRID (page complète)
+   =================================================================== */
+.planning-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.planning-grid__loading {
+  text-align: center;
+  color: var(--color-gray-400);
+  padding: var(--space-xl);
+}
+
+.planning-grid__table-wrapper {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  overflow-x: auto;
+}
+
+.planning-grid__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.planning-grid__table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.planning-grid__room-header {
+  width: 80px;
 }
