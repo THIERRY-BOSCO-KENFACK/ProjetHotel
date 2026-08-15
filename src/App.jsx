@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import PlanningPage from "./pages/PlanningPage";
+import ReservationsPage from "./pages/ReservationsPage";
 import ComingSoonPage from "./pages/ComingSoonPage";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <Routes>
       <Route path="/" element={<DashboardPage />} />
       <Route path="/planning" element={<PlanningPage />} />
-      <Route path="/reservations" element={<ComingSoonPage title="Réservations" />} />
+      <Route path="/reservations" element={<ReservationsPage />} />
       <Route path="/clients" element={<ComingSoonPage title="Clients" />} />
       <Route path="/entretien" element={<ComingSoonPage title="Entretien" />} />
       <Route path="/comptabilite" element={<ComingSoonPage title="Comptabilité" />} />
