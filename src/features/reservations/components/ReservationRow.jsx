@@ -1,4 +1,4 @@
-import ReservationStatusBadge from "./ReservationStatusBadge";
+import ReservationStatusBadge from "./ReservationsStatusBadge";
 
 // Formate une date ISO ("2025-07-20") en format lisible français ("20 juil. 2025").
 // Fonction locale car spécifique à l'affichage de cette ligne — si un autre
