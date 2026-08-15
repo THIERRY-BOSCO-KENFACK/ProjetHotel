@@ -60,4 +60,9 @@ const MOCK_RESERVATIONS = [
 // pour garder une cohérence d'API entre les hooks de l'app.
 function useReservationsData() {
   const [reservations] = useState(MOCK_RESERVATIONS);
-  const
+  const isLoading = false;
+
+  return { reservations, isLoading };
+}
+
+export default useReservationsData;
