@@ -1,4 +1,4 @@
-import ReservationStatusBadge from "./ReservationsStatusBadge";
+import StatusBadge from "../../../components/ui/StatusBadge";
 
 // Formate une date ISO ("2025-07-20") en format lisible français ("20 juil. 2025").
 // Fonction locale car spécifique à l'affichage de cette ligne — si un autre
@@ -25,7 +25,7 @@ function ReservationRow({ reservation }) {
       <td>{formatDate(checkIn)}</td>
       <td>{formatDate(checkOut)}</td>
       <td>
-        <ReservationStatusBadge status={status} />
+        <StatusBadge status={status} />
       </td>
       <td className="reservation-row__source">{source}</td>
     </tr>
