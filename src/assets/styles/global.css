@@ -1494,3 +1494,187 @@ button {
   background-color: var(--color-green-50);
   color: var(--color-green-500);
 }
+
+/* ===================================================================
+   ACCOUNTING VIEW
+   =================================================================== */
+.accounting-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.accounting-view__loading {
+  text-align: center;
+  color: var(--color-gray-400);
+  padding: var(--space-xl);
+}
+
+/* ===================================================================
+   REVENUE METRICS
+   =================================================================== */
+.revenue-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.revenue-metric-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.revenue-metric-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.revenue-metric-card--green .revenue-metric-card__icon {
+  background-color: var(--color-green-50);
+  color: var(--color-green-500);
+}
+
+.revenue-metric-card--amber .revenue-metric-card__icon {
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-500);
+}
+
+.revenue-metric-card--red .revenue-metric-card__icon {
+  background-color: var(--color-red-50);
+  color: var(--color-red-500);
+}
+
+.revenue-metric-card__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.revenue-metric-card__value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-gray-800);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.revenue-metric-card__label {
+  font-size: 0.8rem;
+  color: var(--color-gray-400);
+}
+
+/* ===================================================================
+   INVOICES TOOLBAR
+   =================================================================== */
+.invoices-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.invoices-toolbar__status-select {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-white);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+}
+
+.invoices-toolbar__status-select:focus {
+  outline: none;
+  border-color: var(--color-blue-500);
+}
+
+/* ===================================================================
+   INVOICES TABLE
+   =================================================================== */
+.invoices-table__wrapper {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  overflow-x: auto;
+}
+
+.invoices-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoices-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.invoices-table__empty {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--color-gray-400);
+}
+
+/* ===================================================================
+   INVOICE ROW
+   =================================================================== */
+.invoice-row td {
+  padding: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.invoice-row__id {
+  color: var(--color-gray-400);
+  font-size: 0.75rem;
+}
+
+.invoice-row__client {
+  font-weight: 600;
+}
+
+.invoice-row__amount {
+  font-weight: 600;
+  color: var(--color-gray-800);
+}
+
+/* ===================================================================
+   STATUS BADGE — ajout des statuts de facturation
+   =================================================================== */
+.status-badge--paid {
+  background-color: var(--color-green-50);
+  color: var(--color-green-500);
+}
+
+.status-badge--overdue {
+  background-color: var(--color-red-50);
+  color: var(--color-red-500);
+}
+
+/* ===================================================================
+   RESPONSIVE — ajustement pour les nouvelles grilles
+   =================================================================== */
+@media (max-width: 900px) {
+  .revenue-metrics {
+    grid-template-columns: 1fr;
+  }
+}

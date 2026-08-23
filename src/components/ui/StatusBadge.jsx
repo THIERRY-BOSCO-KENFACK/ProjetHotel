@@ -1,9 +1,11 @@
-// StatusBadge : badge coloré générique, partagé entre features (Reservations, Clients...).
+// StatusBadge : badge coloré générique, partagé entre features (Reservations, Clients, Accounting...).
 // `status` doit correspondre à une clé de STATUS_LABELS.
 const STATUS_LABELS = {
   confirmed: "Confirmée",
   pending: "En attente",
   cancelled: "Annulée",
+  paid: "Payée",
+  overdue: "En retard",
 };
 
 function StatusBadge({ status }) {
