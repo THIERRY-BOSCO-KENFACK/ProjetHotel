@@ -1279,3 +1279,218 @@ button {
   color: var(--color-gray-400);
   padding: var(--space-lg);
 }
+
+/* ===================================================================
+   HOUSEKEEPING VIEW
+   =================================================================== */
+.housekeeping-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.housekeeping-view__loading {
+  text-align: center;
+  color: var(--color-gray-400);
+  padding: var(--space-xl);
+}
+
+/* ===================================================================
+   HOUSEKEEPING TABS
+   =================================================================== */
+.housekeeping-tabs {
+  display: flex;
+  gap: var(--space-xs);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.housekeeping-tabs__tab {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  border-bottom: 2px solid transparent;
+  transition: 0.15s ease;
+}
+
+.housekeeping-tabs__tab:hover {
+  color: var(--color-gray-800);
+}
+
+.housekeeping-tabs__tab--active {
+  color: var(--color-blue-600);
+  border-bottom-color: var(--color-blue-600);
+}
+
+/* ===================================================================
+   ROOM STATUS BOARD
+   =================================================================== */
+.room-status-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-md);
+}
+
+.room-status-board__empty {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--color-gray-400);
+}
+
+/* ===================================================================
+   ROOM STATUS CARD
+   =================================================================== */
+.room-status-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
+  border-top: 3px solid transparent;
+}
+
+.room-status-card__room {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-gray-800);
+}
+
+.room-status-card__label {
+  font-size: 0.8rem;
+  color: var(--color-gray-600);
+}
+
+.room-status-card--clean {
+  border-top-color: var(--color-green-500);
+}
+.room-status-card--clean .room-status-card__icon {
+  color: var(--color-green-500);
+}
+
+.room-status-card--dirty {
+  border-top-color: var(--color-amber-500);
+}
+.room-status-card--dirty .room-status-card__icon {
+  color: var(--color-amber-500);
+}
+
+.room-status-card--in_progress {
+  border-top-color: var(--color-blue-500);
+}
+.room-status-card--in_progress .room-status-card__icon {
+  color: var(--color-blue-500);
+}
+
+.room-status-card--out_of_order {
+  border-top-color: var(--color-red-500);
+}
+.room-status-card--out_of_order .room-status-card__icon {
+  color: var(--color-red-500);
+}
+
+/* ===================================================================
+   TASKS LIST
+   =================================================================== */
+.tasks-list__wrapper {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  overflow-x: auto;
+}
+
+.tasks-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tasks-list th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.tasks-list__empty {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--color-gray-400);
+}
+
+/* ===================================================================
+   TASK ROW
+   =================================================================== */
+.task-row td {
+  padding: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.task-row__room {
+  font-weight: 600;
+}
+
+/* ===================================================================
+   TASK PRIORITY BADGE
+   =================================================================== */
+.task-priority {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.task-priority--high {
+  background-color: var(--color-red-50);
+  color: var(--color-red-500);
+}
+
+.task-priority--medium {
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-500);
+}
+
+.task-priority--low {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+/* ===================================================================
+   TASK STATUS BADGE
+   =================================================================== */
+.task-status {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.task-status--pending {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.task-status--in_progress {
+  background-color: var(--color-blue-50);
+  color: var(--color-blue-600);
+}
+
+.task-status--done {
+  background-color: var(--color-green-50);
+  color: var(--color-green-500);
+}
