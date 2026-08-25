@@ -1678,3 +1678,234 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===================================================================
+   SELECT FIELD (généralisé depuis .modal__select)
+   =================================================================== */
+.select-field {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+  background-color: var(--color-white);
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: var(--color-blue-500);
+}
+
+/* ===================================================================
+   SETTINGS VIEW
+   =================================================================== */
+.settings-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.settings-view__loading {
+  text-align: center;
+  color: var(--color-gray-400);
+  padding: var(--space-xl);
+}
+
+.settings-view__content {
+  max-width: 560px;
+}
+
+/* ===================================================================
+   SETTINGS TABS
+   =================================================================== */
+.settings-tabs {
+  display: flex;
+  gap: var(--space-xs);
+  border-bottom: 1px solid var(--color-gray-200);
+  flex-wrap: wrap;
+}
+
+.settings-tabs__tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  border-bottom: 2px solid transparent;
+  transition: 0.15s ease;
+  white-space: nowrap;
+}
+
+.settings-tabs__tab:hover {
+  color: var(--color-gray-800);
+}
+
+.settings-tabs__tab--active {
+  color: var(--color-blue-600);
+  border-bottom-color: var(--color-blue-600);
+}
+
+/* ===================================================================
+   SETTINGS SECTION (conteneur commun à Profile/Hotel/Users/Notifications)
+   =================================================================== */
+.settings-section {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.settings-section__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+}
+
+.settings-section__field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.settings-section__readonly-value {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  padding: var(--space-sm) 0;
+}
+
+.settings-section__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.settings-section__saved-hint {
+  font-size: 0.8rem;
+  color: var(--color-green-500);
+  font-weight: 600;
+}
+
+/* ===================================================================
+   USERS TABLE
+   =================================================================== */
+.users-table__wrapper {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.user-row td {
+  padding: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.user-row__name {
+  font-weight: 600;
+}
+
+/* ===================================================================
+   USER STATUS BADGE
+   =================================================================== */
+.user-status {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.user-status--active {
+  background-color: var(--color-green-50);
+  color: var(--color-green-500);
+}
+
+.user-status--inactive {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-400);
+}
+
+/* ===================================================================
+   NOTIFICATION TOGGLE (switch visuel)
+   =================================================================== */
+.notification-toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.notification-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  cursor: pointer;
+}
+
+.notification-toggle__label {
+  font-size: 0.9rem;
+  color: var(--color-gray-800);
+}
+
+/* L'input natif reste présent pour l'accessibilité mais est visuellement masqué */
+.notification-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.notification-toggle__switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  background-color: var(--color-gray-200);
+  border-radius: var(--radius-full);
+  transition: background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.notification-toggle__switch::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-full);
+  transition: transform 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.notification-toggle__input:checked + .notification-toggle__switch {
+  background-color: var(--color-blue-600);
+}
+
+.notification-toggle__input:checked + .notification-toggle__switch::before {
+  transform: translateX(18px);
+}
+
+.notification-toggle__input:focus-visible + .notification-toggle__switch {
+  outline: 2px solid var(--color-blue-500);
+  outline-offset: 2px;
+}

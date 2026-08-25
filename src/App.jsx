@@ -6,7 +6,7 @@ import ClientsPage from "./pages/ClientsPage";
 import ClientDetailPage from "./pages/ClientDetailPage";
 import HousekeepingPage from "./pages/HousekeepingPage";
 import AccountingPage from "./pages/AccountingPage";
-import ComingSoonPage from "./pages/ComingSoonPage";
+import SettingsPage from "./pages/SettingsPage";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       <Route path="/clients/:id" element={<ClientDetailPage />} />
       <Route path="/entretien" element={<HousekeepingPage />} />
       <Route path="/comptabilite" element={<AccountingPage />} />
-      <Route path="/parametres" element={<ComingSoonPage title="Paramètres" />} />
+      <Route path="/parametres" element={<SettingsPage />} />
     </Routes>
   );
 }
