@@ -1909,3 +1909,73 @@ button {
   outline: 2px solid var(--color-blue-500);
   outline-offset: 2px;
 }
+
+.btn--danger {
+  background-color: var(--color-red-500);
+  color: var(--color-white);
+}
+
+
+/* ===================================================================
+   LOGOUT CONFIRM MODAL
+   =================================================================== */
+.modal--compact {
+  max-width: 360px;
+}
+
+.logout-modal__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin-bottom: var(--space-sm);
+}
+
+.logout-modal__message {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-md);
+}
+
+/* ===================================================================
+   LOGIN VIEW
+   =================================================================== */
+.login-view {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  padding: var(--space-lg);
+}
+
+.login-view__card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xl);
+  width: 100%;
+  max-width: 380px;
+}
+
+.login-view__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--color-blue-600);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xl);
+}
+
+.login-view__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.login-view__error {
+  font-size: 0.8rem;
+  color: var(--color-red-500);
+  margin: 0;
+}

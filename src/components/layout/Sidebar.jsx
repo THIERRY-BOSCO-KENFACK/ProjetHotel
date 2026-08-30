@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   CalendarDays,
@@ -10,8 +11,9 @@ import {
   LogOut,
   Hotel,
 } from "lucide-react";
+import useAuth from "../../features/auth/hooks/useAuth";
+import LogoutConfirmModal from "../../features/auth/components/LogoutConfirmModal";
 
-// Chaque item a maintenant un `path`, utilisé par NavLink pour la navigation.
 const NAV_ITEMS = [
   { id: "dashboard", label: "Tableau de bord", icon: LayoutDashboard, path: "/" },
   { id: "planning", label: "Planning", icon: CalendarDays, path: "/planning" },
@@ -22,7 +24,20 @@ const NAV_ITEMS = [
   { id: "parametres", label: "Paramètres", icon: Settings, path: "/parametres" },
 ];
 
+// Sidebar : navigation principale + déclenchement du flux de déconnexion.
+// Le clic sur "Déconnexion" n'appelle jamais logout() directement —
+// il ouvre uniquement la modale de confirmation (isLogoutModalOpen).
 function Sidebar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  const handleConfirmLogout = () => {
+    logout();
+    setIsLogoutModalOpen(false);
+    navigate("/login");
+  };
+
   return (
     <aside className="sidebar">
       <div className="sidebar__logo">
@@ -50,11 +65,21 @@ function Sidebar() {
       </nav>
 
       <div className="sidebar__footer">
-        <button type="button" className="sidebar__nav-item sidebar__logout">
+        <button
+          type="button"
+          className="sidebar__nav-item sidebar__logout"
+          onClick={() => setIsLogoutModalOpen(true)}
+        >
           <LogOut size={20} />
           <span>Déconnexion</span>
         </button>
       </div>
+
+      <LogoutConfirmModal
+        isOpen={isLogoutModalOpen}
+        onConfirm={handleConfirmLogout}
+        onCancel={() => setIsLogoutModalOpen(false)}
+      />
     </aside>
   );
 }
