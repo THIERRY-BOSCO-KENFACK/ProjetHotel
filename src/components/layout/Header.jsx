@@ -1,42 +1,41 @@
-import { Bell } from "lucide-react";
+import { useState } from "react";
+import { Menu, Bell } from "lucide-react";
+import GlobalSearch from "./GlobalSearch";
+import NotificationsPanel from "./NotificationsPanel";
+import useNotifications from "../../context/useNotifications";
 
-// Header réutilisable sur toutes les pages.
-// `pageTitle` permet d'adapter le titre affiché sans dupliquer le composant.
-// `user` regroupe les infos de profil (mock data en attendant l'authentification).
-function Header({ pageTitle = "Tableau de bord", user = { name: "Marie", role: "Réceptionniste" } }) {
-  // Nombre de notifications non lues (donnée simulée pour l'instant)
-  const unreadNotifications = 3;
-
-  // Génère les initiales à partir du nom pour l'avatar (fallback simple sans image)
-  const initials = user.name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
-
-
-//dans const ci haut, on utilise la méthode split pour diviser le nom 
-// de l'utilisateur en parties (en utilisant l'espace comme séparateur), puis on mappe
-//chaque partie pour obtenir la première lettre, et enfin on joint ces lettres pour former les initiales. La méthode toUpperCase est utilisée pour s'assurer que les initiales sont en majuscules. 
+function Header({ pageTitle = "Tableau de bord", user = { name: "Marie", role: "Réceptionniste" }, onOpenMobileMenu }) {
+  const { unreadCount } = useNotifications();
+  const [isNotificationsPanelOpen, setIsNotificationsPanelOpen] = useState(false);
+  const initials = user.name.split(" ").map((part) => part[0]).join("").toUpperCase();
 
   return (
     <header className="header">
-      {/* Titre de la page courante */}
-      <h1 className="header__title">{pageTitle}</h1>
+      <div className="header__left">
+        <button
+          type="button"
+          className="header__mobile-menu-toggle"
+          onClick={onOpenMobileMenu}
+          aria-label="Ouvrir le menu"
+        >
+          <Menu size={22} />
+        </button>
+        <h1 className="header__title">{pageTitle}</h1>
+      </div>
+
+      <GlobalSearch />
 
       <div className="header__actions">
-        {/* Icône de notifications avec badge */}
-        <button type="button" className="header__notifications" aria-label="Notifications">
-
-            {/* Bell est l'icône de notifications */}
-
+        <button
+          type="button"
+          className="header__notifications"
+          onClick={() => setIsNotificationsPanelOpen(true)}
+          aria-label="Notifications"
+        >
           <Bell size={20} />
-          {unreadNotifications > 0 && (
-            <span className="header__notifications-badge">{unreadNotifications}</span>
-          )}
+          {unreadCount > 0 && <span className="header__notifications-badge">{unreadCount}</span>}
         </button>
 
-        {/* Profil utilisateur */}
         <div className="header__profile">
           <div className="header__avatar">{initials}</div>
           <div className="header__profile-info">
@@ -45,6 +44,11 @@ function Header({ pageTitle = "Tableau de bord", user = { name: "Marie", role: "
           </div>
         </div>
       </div>
+
+      <NotificationsPanel
+        isOpen={isNotificationsPanelOpen}
+        onClose={() => setIsNotificationsPanelOpen(false)}
+      />
     </header>
   );
 }

@@ -69,6 +69,7 @@ button {
 
   /* Layout */
   --sidebar-width: 240px;
+  --sidebar-width-collapsed: 72px;
   --header-height: 64px;
 }
 
@@ -79,6 +80,11 @@ button {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   min-height: 100vh;
+  transition: grid-template-columns 0.2s ease;
+}
+
+.app-layout--collapsed {
+  grid-template-columns: var(--sidebar-width-collapsed) 1fr;
 }
 
 .app-layout__main {
@@ -176,8 +182,17 @@ button {
   border-bottom: 1px solid var(--color-gray-200);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: var(--space-lg);
   padding: 0 var(--space-lg);
+}
+
+.header__left {
+  flex-shrink: 0;
+}
+
+.header__actions {
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .header__title {
@@ -565,6 +580,23 @@ button {
 }
 
 /* ===================================================================
+   RESPONSIVE — mobile (< 768px) : Sidebar desktop masquée, menu Drawer
+   =================================================================== */
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .header__mobile-menu-toggle {
+    display: flex;
+  }
+}
+
+/* ===================================================================
    RESERVATION BAR (partagé entre Dashboard et Planning)
    =================================================================== */
 .reservation-bar {
@@ -930,6 +962,9 @@ button {
 
 .modal__body {
   padding: var(--space-lg);
+}
+
+.modal__form {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -1923,18 +1958,6 @@ button {
   max-width: 360px;
 }
 
-.logout-modal__title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--color-gray-800);
-  margin-bottom: var(--space-sm);
-}
-
-.logout-modal__message {
-  font-size: 0.9rem;
-  color: var(--color-gray-600);
-  margin-bottom: var(--space-md);
-}
 
 /* ===================================================================
    LOGIN VIEW
@@ -1978,4 +2001,678 @@ button {
   font-size: 0.8rem;
   color: var(--color-red-500);
   margin: 0;
+}
+
+/* ===================================================================
+   CONFIRM DIALOG (remplace .logout-modal__*)
+   =================================================================== */
+.confirm-dialog__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin-bottom: var(--space-sm);
+}
+
+.confirm-dialog__message {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-md);
+}
+
+/* ===================================================================
+   TOAST
+   =================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  z-index: 200;
+  max-width: 360px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-md);
+  animation: toast-in 0.2s ease;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast__icon {
+  flex-shrink: 0;
+}
+
+.toast--success .toast__icon {
+  color: var(--color-green-500);
+}
+
+.toast--error .toast__icon {
+  color: var(--color-red-500);
+}
+
+.toast--info .toast__icon {
+  color: var(--color-blue-600);
+}
+
+.toast__message {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+}
+
+.toast__close {
+  color: var(--color-gray-400);
+  flex-shrink: 0;
+}
+
+.toast__close:hover {
+  color: var(--color-gray-800);
+}
+
+/* ===================================================================
+   EMPTY STATE
+   =================================================================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  color: var(--color-gray-400);
+}
+
+.empty-state__icon {
+  color: var(--color-gray-300);
+}
+
+.empty-state__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-gray-600);
+}
+
+.empty-state__message {
+  font-size: 0.85rem;
+  color: var(--color-gray-400);
+}
+
+.empty-state__action {
+  margin-top: var(--space-sm);
+}
+
+/* ===================================================================
+   LOADING STATE
+   =================================================================== */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  color: var(--color-gray-400);
+}
+
+.loading-state__spinner {
+  color: var(--color-blue-500);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state__message {
+  font-size: 0.85rem;
+}
+
+/* ===================================================================
+   SKELETON
+   =================================================================== */
+.skeleton-group {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-100) 25%,
+    var(--color-gray-200) 50%,
+    var(--color-gray-100) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton--text {
+  border-radius: var(--radius-sm);
+}
+
+.skeleton--circle {
+  border-radius: var(--radius-full);
+}
+
+.skeleton--rect {
+  border-radius: var(--radius-md);
+}
+
+/* ===================================================================
+   DATE PICKER
+   =================================================================== */
+.date-picker {
+  position: relative;
+}
+
+.date-picker__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+}
+
+.date-picker__trigger:hover {
+  border-color: var(--color-gray-300);
+}
+
+.date-picker__popover {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-md);
+  z-index: 50;
+  width: 260px;
+}
+
+.date-picker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.date-picker__header button {
+  color: var(--color-gray-600);
+  padding: var(--space-xs);
+  border-radius: var(--radius-full);
+}
+
+.date-picker__header button:hover {
+  background-color: var(--color-gray-100);
+}
+
+.date-picker__month-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+}
+
+.date-picker__weekdays,
+.date-picker__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.date-picker__weekdays span {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  padding: var(--space-xs) 0;
+}
+
+.date-picker__day {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--color-gray-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-picker__day:hover {
+  background-color: var(--color-gray-100);
+}
+
+.date-picker__day--selected {
+  background-color: var(--color-blue-600);
+  color: var(--color-white);
+}
+
+/* ===================================================================
+   BADGE (générique — différent de StatusBadge)
+   =================================================================== */
+.badge {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge--neutral {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.badge--blue {
+  background-color: var(--color-blue-50);
+  color: var(--color-blue-600);
+}
+
+.badge--green {
+  background-color: var(--color-green-50);
+  color: var(--color-green-500);
+}
+
+.badge--amber {
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-500);
+}
+
+.badge--red {
+  background-color: var(--color-red-50);
+  color: var(--color-red-500);
+}
+
+/* ===================================================================
+   TOOLTIP
+   =================================================================== */
+.tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip-panel {
+  position: absolute;
+  background-color: var(--color-gray-800);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: 60;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.tooltip-panel--top {
+  bottom: calc(100% + var(--space-xs));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-panel--bottom {
+  top: calc(100% + var(--space-xs));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-panel--left {
+  right: calc(100% + var(--space-xs));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-panel--right {
+  left: calc(100% + var(--space-xs));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ===================================================================
+   DROPDOWN
+   =================================================================== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xs);
+  min-width: 180px;
+  z-index: 50;
+}
+
+.dropdown__menu--left {
+  left: 0;
+}
+
+.dropdown__menu--right {
+  right: 0;
+}
+
+.dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+  text-align: left;
+}
+
+.dropdown__item:hover {
+  background-color: var(--color-gray-100);
+}
+
+.dropdown__item--danger {
+  color: var(--color-red-500);
+}
+
+.dropdown__item--danger:hover {
+  background-color: var(--color-red-50);
+}
+
+/* ===================================================================
+   DRAWER
+   =================================================================== */
+.modal-overlay:has(.drawer) {
+  justify-content: flex-end;
+  align-items: stretch;
+  padding: 0;
+}
+
+.drawer {
+  background-color: var(--color-white);
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+  animation: drawer-in-right 0.2s ease;
+}
+
+.drawer--left {
+  animation: drawer-in-left 0.2s ease;
+}
+
+@keyframes drawer-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.drawer__header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+}
+
+.drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+/* ===================================================================
+   SIDEBAR — mode réduit
+   =================================================================== */
+.sidebar {
+  transition: width 0.2s ease, padding 0.2s ease;
+}
+
+.sidebar--collapsed {
+  align-items: center;
+}
+
+.sidebar--collapsed .sidebar__logo {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar--collapsed .sidebar__nav-item {
+  justify-content: center;
+  width: 44px;
+  padding: var(--space-sm);
+}
+
+.sidebar__collapse-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm);
+  margin-top: var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--color-gray-400);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.sidebar__collapse-toggle:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+}
+
+.sidebar--collapsed .sidebar__collapse-toggle {
+  justify-content: center;
+}
+
+/* ===================================================================
+   HEADER — bouton menu mobile
+   =================================================================== */
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.header__mobile-menu-toggle {
+  display: none; /* visible uniquement sous 768px, voir media query ci-dessus */
+  color: var(--color-gray-600);
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+}
+
+.header__mobile-menu-toggle:hover {
+  background-color: var(--color-gray-100);
+}
+
+/* ===================================================================
+   SIDEBAR — contenu à l'intérieur du Drawer mobile
+   =================================================================== */
+.sidebar__mobile-content .sidebar__nav-list {
+  padding: 0;
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.sidebar__mobile-content .sidebar__footer {
+  border-top: 1px solid var(--color-gray-200);
+  padding-top: var(--space-md);
+}
+
+/* ===================================================================
+   GLOBAL SEARCH
+   =================================================================== */
+.global-search {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+  min-width: 0;
+}
+
+.global-search__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.global-search__icon {
+  position: absolute;
+  left: var(--space-sm);
+  color: var(--color-gray-400);
+  pointer-events: none;
+}
+
+.global-search__input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) calc(var(--space-lg) + var(--space-xs));
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  background-color: var(--color-gray-100);
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+}
+
+.global-search__input:focus {
+  outline: none;
+  border-color: var(--color-blue-500);
+  background-color: var(--color-white);
+}
+
+.global-search__panel {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xs);
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.global-search__empty {
+  padding: var(--space-md);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-gray-400);
+}
+
+.global-search__result {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.global-search__result:hover {
+  background-color: var(--color-gray-100);
+}
+
+.global-search__result-icon {
+  color: var(--color-gray-400);
+  flex-shrink: 0;
+}
+
+.global-search__result-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.global-search__result-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.global-search__result-sublabel {
+  font-size: 0.75rem;
+  color: var(--color-gray-400);
+}
+
+.global-search__result-type {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-gray-400);
+  background-color: var(--color-gray-100);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+}
+
+/* ===================================================================
+   RESPONSIVE — recherche globale sur petits écrans
+   =================================================================== */
+@media (max-width: 640px) {
+  .global-search {
+    max-width: none;
+  }
+
+  .header__title {
+    display: none;
+  }
 }
