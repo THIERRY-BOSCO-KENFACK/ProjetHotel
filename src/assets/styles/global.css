@@ -2676,3 +2676,56 @@ button {
     display: none;
   }
 }
+
+/* ===================================================================
+   RESPONSIVE — mobile étroit (< 480px) : header condensé
+   =================================================================== */
+@media (max-width: 480px) {
+  .header {
+    gap: var(--space-sm);
+    padding: 0 var(--space-md);
+  }
+
+  .header__profile-info {
+    display: none;
+  }
+
+  .header__profile {
+    gap: 0;
+  }
+
+  .global-search {
+    max-width: none;
+  }
+
+  .global-search__input {
+    padding-left: calc(var(--space-lg) + var(--space-xs));
+  }
+
+  .reception-actions__buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .reception-actions__buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .reception-actions__search {
+    width: 100%;
+  }
+
+  .search-bar {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* ===================================================================
+   FILET DE SÉCURITÉ — empêche tout débordement horizontal résiduel
+   =================================================================== */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}

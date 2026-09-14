@@ -39,7 +39,7 @@ function ReceptionAction() {
       </div>
 
       <div className="reception-actions__search">
-        <SearchBar onSearch={handleSearch} placeholder="Rechercher une réservation, un client..." />
+        <SearchBar onSearch={handleSearch} placeholder="Rechercher..." />
       </div>
     </section>
   );
