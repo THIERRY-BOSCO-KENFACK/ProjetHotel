@@ -591,9 +591,7 @@ button {
     display: none;
   }
 
-  .header__mobile-menu-toggle {
-    display: flex;
-  }
+
 }
 
 /* ===================================================================
@@ -2530,17 +2528,6 @@ button {
   gap: var(--space-md);
 }
 
-.header__mobile-menu-toggle {
-  display: none; /* visible uniquement sous 768px, voir media query ci-dessus */
-  color: var(--color-gray-600);
-  padding: var(--space-xs);
-  border-radius: var(--radius-md);
-}
-
-.header__mobile-menu-toggle:hover {
-  background-color: var(--color-gray-100);
-}
-
 /* ===================================================================
    SIDEBAR — contenu à l'intérieur du Drawer mobile
    =================================================================== */
@@ -2728,4 +2715,29 @@ button {
 html, body {
   overflow-x: hidden;
   max-width: 100%;
+}
+
+.header__mobile-menu-toggle {
+  display: none;
+  color: var(--color-gray-600);
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+}
+
+.header__mobile-menu-toggle:hover {
+  background-color: var(--color-gray-100);
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .header__mobile-menu-toggle {
+    display: flex;
+  }
 }
