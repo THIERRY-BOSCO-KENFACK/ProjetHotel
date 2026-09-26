@@ -2741,3 +2741,72 @@ html, body {
     display: flex;
   }
 }
+
+/* ===================================================================
+   NOTIFICATIONS PANEL (contenu du Drawer de notifications)
+   =================================================================== */
+.notifications-panel__mark-all {
+  width: 100%;
+  text-align: left;
+  font-size: 0.8rem;
+  color: var(--color-blue-600);
+  font-weight: 600;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+}
+
+.notifications-panel__mark-all:hover {
+  background-color: var(--color-blue-50);
+}
+
+.notifications-panel__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.notifications-panel__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+}
+
+.notifications-panel__item--unread {
+  background-color: var(--color-blue-50);
+}
+
+.notifications-panel__icon {
+  color: var(--color-gray-600);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.notifications-panel__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.notifications-panel__message {
+  font-size: 0.85rem;
+  color: var(--color-gray-800);
+}
+
+.notifications-panel__time {
+  font-size: 0.75rem;
+  color: var(--color-gray-400);
+}
+
+.notifications-panel__mark-read {
+  font-size: 0.7rem;
+  color: var(--color-blue-600);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
